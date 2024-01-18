@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import { inter } from "./utils/fonts";
+import Nav from "./ui/Nav";
+import Provider from "./ui/Provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,7 +16,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} `}>{children}</body>
+      <link rel="icon" href="/assets/images/logo.svg" sizes="any" />
+      <body className={``}>
+        <Provider>
+          <div className="main">
+            <div className="gradient"></div>
+          </div>
+
+          <main className="app">
+            <Nav />
+            {children}
+          </main>
+        </Provider>
+      </body>
     </html>
   );
 }

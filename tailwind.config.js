@@ -8,7 +8,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        instrument: ["Instrument Serif", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
+      },
+      colors: {
+        "primary-orange": "#FF5722",
       },
     },
   },
