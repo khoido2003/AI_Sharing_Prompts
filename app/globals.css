@@ -80,7 +80,7 @@
 }
 
 .black_btn {
-  @apply rounded-full border border-black bg-black px-5 py-1.5 text-white transition-all hover:bg-white;
+  @apply flex items-center justify-center rounded-full border border-black bg-black px-5 py-1.5 text-center text-sm text-white transition-all hover:bg-white hover:text-black;
 }
 
 .outline_btn {
@@ -99,7 +99,7 @@
   @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
 }
 
-.blue-gradient {
+.blue_gradient {
   @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
 }
 
@@ -107,8 +107,8 @@
   @apply mt-5 max-w-2xl text-lg text-gray-600 sm:text-xl;
 }
 
-.search-input {
-  @apply block w-full rounded-md border-gray-200 bg-white py-2 pl-5 pr-12 font-roboto text-sm font-medium shadow-lg focus:border-black focus:outline-none focus:ring-0;
+.search_input {
+  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 pl-5 pr-12 text-sm font-medium shadow-lg focus:border-black/45 focus:outline-none focus:ring-0;
 }
 
 .copy_btn {

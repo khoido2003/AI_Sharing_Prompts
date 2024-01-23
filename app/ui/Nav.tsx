@@ -1,4 +1,5 @@
 "use client";
+
 import { BuiltInProviderType } from "next-auth/providers/index";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
@@ -15,6 +16,7 @@ import {
 
 import Link from "next/link";
 import Image from "next/image";
+import { inter } from "../utils/fonts";
 
 type ImgSrc = string | StaticImport;
 
@@ -46,6 +48,8 @@ function Nav() {
           width={30}
           height={30}
         />
+
+        <span>Promptopia</span>
       </Link>
 
       <div className="hidden sm:flex">
@@ -81,7 +85,7 @@ function Nav() {
                   type="button"
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
-                  className="black_btn"
+                  className={`black_btn ${inter.className}`}
                 >
                   Sign in
                 </button>

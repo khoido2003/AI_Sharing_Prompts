@@ -1,5 +1,6 @@
 import User from "@/app/models/user";
 import { connectToDB } from "@/app/utils/database";
+import { DefaultSession } from "next-auth";
 
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
