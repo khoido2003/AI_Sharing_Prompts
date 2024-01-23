@@ -90,7 +90,16 @@ function PromptCard({
         {post.prompt}
       </p>
       <p className={`blue_gradient cursor-pointer ${roboto.className} text-sm`}>
-        {post.tag}
+        {post.tag.split(/\s/g).map((item, i) => (
+          <span
+            key={i}
+            onClick={() => {
+              handleTagClick(item);
+            }}
+          >
+            {item}{" "}
+          </span>
+        ))}
       </p>
 
       {/* EDIT AND DELETE PROMPT CARD IF THE PROMPT BELONG TO THE CURRENT USER */}
