@@ -129,7 +129,7 @@ const Feed = () => {
       <form className="flex-center relative flex w-full">
         <input
           type="text"
-          className="search_input peer"
+          className="search_input dark:text-black"
           placeholder="Search for a tag or an username..."
           value={searchText}
           onChange={handleSearchChange}

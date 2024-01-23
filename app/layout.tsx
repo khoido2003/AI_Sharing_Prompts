@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "./ui/Nav";
 import Provider from "./ui/Provider";
+import { ThemeProvider } from "./utils/theme-provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,16 +19,23 @@ export default function RootLayout({
     <html lang="en">
       <link rel="icon" href="/assets/images/logo.svg" sizes="any" />
       <body className={``}>
-        <Provider>
-          <div className="main">
-            <div className="gradient"></div>
-          </div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          // disableTransitionOnChange
+        >
+          <Provider>
+            <div className="main dark:dark_main">
+              <div className="gradient"></div>
+            </div>
 
-          <main className="app">
-            <Nav />
-            {children}
-          </main>
-        </Provider>
+            <main className="app">
+              <Nav />
+              {children}
+            </main>
+          </Provider>
+        </ThemeProvider>
       </body>
     </html>
   );

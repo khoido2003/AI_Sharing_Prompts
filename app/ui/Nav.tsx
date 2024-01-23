@@ -17,6 +17,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { inter } from "../utils/fonts";
+import ToggleButton from "./ToggleButton";
 
 type ImgSrc = string | StaticImport;
 
@@ -50,6 +51,7 @@ function Nav() {
         />
 
         <span>Promptopia</span>
+        <ToggleButton />
       </Link>
 
       <div className="hidden sm:flex">
@@ -85,7 +87,7 @@ function Nav() {
                   type="button"
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
-                  className={`black_btn ${inter.className}`}
+                  className={`black_btn dark:black_btn_dark ${inter.className}`}
                 >
                   Sign in
                 </button>

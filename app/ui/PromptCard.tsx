@@ -58,10 +58,14 @@ function PromptCard({
           />
 
           <div className="flex flex-col">
-            <h3 className={`${roboto.className} font-semibold text-gray-900`}>
+            <h3
+              className={`${roboto.className} dark:text-gray-90 font-semibold text-gray-100/80`}
+            >
               {post.creator.username}
             </h3>
-            <p className={`${inter.className} text-sm text-gray-500`}>
+            <p
+              className={`${inter.className} text-sm text-gray-500 dark:text-gray-400`}
+            >
               {post.creator.email}
             </p>
           </div>
@@ -86,7 +90,9 @@ function PromptCard({
         </div>
       </div>
 
-      <p className={`${roboto.className} my-4 text-sm text-gray-700`}>
+      <p
+        className={`${roboto.className} my-4 text-sm text-gray-700 dark:text-gray-300`}
+      >
         {post.prompt}
       </p>
       <p className={`blue_gradient cursor-pointer ${roboto.className} text-sm`}>
@@ -97,7 +103,7 @@ function PromptCard({
               handleTagClick(item);
             }}
           >
-            {item}{" "}
+            {item.charAt(0) === "#" ? item : `#${item}`}{" "}
           </span>
         ))}
       </p>
