@@ -42,18 +42,21 @@ function Nav() {
 
   return (
     <nav className="flex-between mb-16 w-full pt-3">
-      <Link href="/" className="flex-center flex gap-2">
-        <Image
-          src="/assets/images/logo.svg"
-          alt="Logo"
-          width={30}
-          height={30}
-        />
+      <div className="flex gap-5">
+        <Link href="/" className="flex-center flex gap-2">
+          <Image
+            src="/assets/images/logo.svg"
+            alt="Logo"
+            width={30}
+            height={30}
+          />
 
-        <span>Promptopia</span>
+          <span>PromptWorld</span>
+        </Link>
         <ToggleButton />
-      </Link>
+      </div>
 
+      {/* Desktop Navigation */}
       <div className="hidden sm:flex">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
@@ -95,6 +98,8 @@ function Nav() {
           </>
         )}
       </div>
+
+      {/* MOBILE NAVIGATION */}
     </nav>
   );
 }

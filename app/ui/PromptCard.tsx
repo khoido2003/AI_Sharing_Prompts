@@ -59,7 +59,7 @@ function PromptCard({
 
           <div className="flex flex-col">
             <h3
-              className={`${roboto.className} dark:text-gray-90 font-semibold text-gray-100/80`}
+              className={`${roboto.className} font-semibold text-gray-900 dark:text-gray-100/80`}
             >
               {post.creator.username}
             </h3>

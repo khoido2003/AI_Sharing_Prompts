@@ -89,7 +89,8 @@ const Feed = () => {
       return data;
     },
 
-    staleTime: 2 * 1000,
+    staleTime: 0,
+    refetchInterval: 5000,
   });
 
   // Handle search results

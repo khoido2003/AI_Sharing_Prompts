@@ -14,6 +14,11 @@ const PromptSchema = new mongoose.Schema({
     type: String,
     required: [true, "Tag is required!"],
   },
+
+  dateAdded: {
+    type: Date,
+    default: new Date().toISOString(),
+  },
 });
 
 const Prompt = models.Prompt || mongoose.model("Prompt", PromptSchema);

@@ -4,7 +4,9 @@ import Prompt from "../../models/prompt";
 export const GET = async (req: Request, res: Response) => {
   try {
     await connectToDB();
-    const prompts = await Prompt.find({}).populate("creator");
+    const prompts = await Prompt.find({})
+      .populate("creator")
+      .sort("-dateAdded");
 
     return new Response(JSON.stringify(prompts), { status: 200 });
   } catch (err) {
