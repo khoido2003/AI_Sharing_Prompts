@@ -10,6 +10,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import SkeletonLoading from "./SkeletonLoading";
 
 interface PromptCardListProps {
   data:
@@ -32,6 +33,11 @@ interface PromptCardListProps {
   isLoading: boolean;
 }
 
+//////////////////////////
+
+// Generate 10 skeleton loading
+const skeletonItems = Array.from({ length: 10 }, (_, index) => index);
+
 const PromptCardList = ({
   data,
   handleTagClick,
@@ -48,7 +54,14 @@ const PromptCardList = ({
           />
         ))
       ) : (
-        <div>Loading</div>
+        <>
+          {skeletonItems.map((index) => (
+            <div key={index} className="skeleton-item">
+              <SkeletonLoading />
+            </div>
+          ))}
+          s
+        </>
       )}
     </div>
   );

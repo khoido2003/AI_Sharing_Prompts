@@ -28,7 +28,9 @@ function Nav() {
     LiteralUnion<BuiltInProviderType, string>,
     ClientSafeProvider
   > | null>(null);
-  const [toggleDropdown, setToggleDropDown] = useState(null);
+
+  // Toggle button in mobile view - Hide in larger view
+  const [toggleDropdown, setToggleDropDown] = useState<boolean>(false);
 
   useEffect(() => {
     const setProvidersFn = async () => {
@@ -100,6 +102,66 @@ function Nav() {
       </div>
 
       {/* MOBILE NAVIGATION */}
+      <div className="relative flex sm:hidden">
+        {session?.user ? (
+          <div className="flex">
+            <Image
+              src={session?.user.image as string}
+              width={37}
+              height={37}
+              className="cursor-pointer rounded-full"
+              alt="User profile image"
+              onClick={() => {
+                setToggleDropDown((prev) => !prev);
+              }}
+            />
+
+            {toggleDropdown && (
+              <div className="dropdown">
+                <Link
+                  href="/profile"
+                  className="dropdown_link"
+                  onClick={() => setToggleDropDown(false)}
+                >
+                  My profile
+                </Link>
+                <Link
+                  href="/create-prompt"
+                  className="dropdown_link"
+                  onClick={() => setToggleDropDown(false)}
+                >
+                  Create Prompt
+                </Link>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setToggleDropDown(false);
+                    signOut();
+                  }}
+                  className="black_btn mt-5 w-full"
+                >
+                  Sign out
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <>
+            {providers &&
+              Object.values(providers).map((provider) => (
+                <button
+                  type="button"
+                  key={provider.name}
+                  onClick={() => signIn(provider.id)}
+                  className="black_btn"
+                >
+                  Sign in
+                </button>
+              ))}
+          </>
+        )}
+      </div>
     </nav>
   );
 }

@@ -220,11 +220,19 @@
 }
 
 .dropdown {
-  @apply absolute right-0 top-full mt-3 flex w-full min-w-[210px] flex-col items-end justify-end gap-2 rounded-lg bg-white p-5;
+  @apply absolute right-0 top-full mt-3 flex w-full min-w-[210px] flex-col items-center justify-end gap-2 rounded-lg bg-white p-5;
+}
+
+.dark .dropdown {
+  @apply absolute right-0 top-full mt-3 flex w-full min-w-[210px] flex-col items-center justify-end gap-2 rounded-lg bg-white/20 bg-clip-padding backdrop-blur-lg backdrop-filter;
 }
 
 .dropdown_link {
   @apply text-sm font-medium text-gray-700 hover:text-gray-500;
+}
+
+.dark .dropdown_link {
+  @apply text-sm font-medium text-gray-200 hover:text-gray-500;
 }
 
 /* Prompt Card */
