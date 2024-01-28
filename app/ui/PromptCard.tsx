@@ -33,7 +33,7 @@ function PromptCard({
   const [copied, setCopied] = useState("");
   const { data: session } = useSession();
 
-  const router = useRouter();
+  // const router = useRouter();
   const pathName = usePathname();
 
   const handleCopy = () => {

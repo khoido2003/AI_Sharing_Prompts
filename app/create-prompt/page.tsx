@@ -48,7 +48,7 @@ const CreatePrompt = () => {
       // Wait for 3 seconds (adjust the delay as needed)
       const redirectTimeout = setTimeout(() => {
         router.push("/"); // Redirect user after the delay
-      }, 2000);
+      }, 1500);
 
       queryClient.invalidateQueries({ queryKey: ["prompts"] });
 
@@ -78,6 +78,7 @@ const CreatePrompt = () => {
 
   return (
     <FormComponent
+      isLoading={mutation.isPending}
       type="Create"
       register={register}
       handleSubmit={handleSubmit}

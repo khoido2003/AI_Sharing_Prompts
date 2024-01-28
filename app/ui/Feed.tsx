@@ -56,7 +56,7 @@ const PromptCardList = ({
       ) : (
         <>
           {skeletonItems.map((index) => (
-            <div key={index} className="skeleton-item">
+            <div key={index}>
               <SkeletonLoading />
             </div>
           ))}

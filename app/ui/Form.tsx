@@ -9,6 +9,7 @@ import {
   UseFormRegister,
   UseFormWatch,
 } from "react-hook-form";
+
 import { Inputs } from "../create-prompt/page";
 import { roboto } from "../utils/fonts";
 import { Toaster } from "@/components/ui/sonner";
@@ -21,6 +22,7 @@ export interface FormProps {
   onSubmitForm: SubmitHandler<Inputs>;
   errors: FieldErrors<Inputs>;
   control: Control<Inputs, any>;
+  isLoading: boolean;
 }
 
 const FormComponent = ({
@@ -31,6 +33,7 @@ const FormComponent = ({
   onSubmitForm,
   errors,
   control,
+  isLoading,
 }: FormProps) => {
   return (
     <section className="flex-start w-full max-w-full flex-col">
@@ -54,6 +57,7 @@ const FormComponent = ({
             Your AI Prompts
           </span>
           <textarea
+            disabled={isLoading}
             placeholder="Write your prompt here..."
             className="form_textarea "
             {...register("prompt", {
@@ -84,6 +88,7 @@ const FormComponent = ({
           </span>
 
           <textarea
+            disabled={isLoading}
             className="form_input"
             placeholder="#tag"
             {...register("tag", { required: "This field is required!" })}
@@ -101,7 +106,7 @@ const FormComponent = ({
             type="submit"
             className="rounded-full bg-primary-orange px-5 py-1.5 text-white hover:bg-slate-800  hover:text-slate-200 dark:hover:bg-slate-200 dark:hover:text-slate-900"
           >
-            {type}
+            {isLoading ? `${type}...` : type}
           </button>
         </div>
       </form>

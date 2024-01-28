@@ -12,21 +12,35 @@
 
 /* For Webkit Browsers (Chrome, Safari) */
 ::-webkit-scrollbar {
-  width: 10px; /* Set the width of the scrollbar */
+  width: 8px; /* Set the width of the scrollbar */
 }
 
-::-webkit-scrollbar-thumb {
+.dark ::-webkit-scrollbar-thumb {
   background-color: #88888882; /* Set the color of the thumb */
   border-radius: 5px; /* Set the border-radius of the thumb */
 }
 
+.dark ::-webkit-scrollbar-track {
+  background-color: #1a1a1d; /* Set the color of the track */
+}
+
+/* Optional: Set the color of the scrollbar corner (where horizontal and vertical scrollbars meet) */
+.dark ::-webkit-scrollbar-corner {
+  background-color: #1a1a1d;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888888b3; /* Set the color of the thumb */
+  border-radius: 5px; /* Set the border-radius of the thumb */
+}
+
 ::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* Set the color of the track */
+  background-color: #fafafa; /* Set the color of the track */
 }
 
 /* Optional: Set the color of the scrollbar corner (where horizontal and vertical scrollbars meet) */
 ::-webkit-scrollbar-corner {
-  background-color: #f1f1f1;
+  background-color: #fafafa;
 }
 
 .main {
