@@ -17,7 +17,7 @@ const PromptSchema = new mongoose.Schema({
 
   dateAdded: {
     type: Date,
-    default: new Date().toISOString(),
+    default: new Date(Date.now()).toISOString(),
   },
 });
 

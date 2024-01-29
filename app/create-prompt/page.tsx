@@ -33,6 +33,7 @@ const CreatePrompt = () => {
           prompt: formData.prompt,
           userId: session?.user?.id,
           tag: formData.tag,
+          dateAdded: new Date(Date.now()).toISOString(),
         }),
       });
     },

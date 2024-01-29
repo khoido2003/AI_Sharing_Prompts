@@ -18,3 +18,20 @@ export const GET = async (
     });
   }
 };
+
+///////////////////////////
+
+export const DELETE = async (
+  req: Request,
+  { params }: { params: { id: string } },
+) => {
+  try {
+    await connectToDB();
+    const prompt = await Prompt.findByIdAndDelete(params.id);
+
+    if (!prompt) return new Response("Prompt not found", { status: 404 });
+    return new Response(JSON.stringify(prompt), { status: 200 });
+  } catch (err) {
+    return new Response("Failed to delete prompt!", { status: 500 });
+  }
+};

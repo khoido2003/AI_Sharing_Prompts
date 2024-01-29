@@ -72,8 +72,8 @@ export interface ProfileComponentProps {
   name: string | null | undefined;
   desc: string | null | undefined;
   data: [PromptData] | void | undefined;
-  handleEdit: () => void;
-  handleDelete: () => void;
+  handleEdit: (post: { _id: string }) => void;
+  handleDelete: (post: { _id: string }) => void;
   isLoading: boolean;
   error: Error | null;
 }
