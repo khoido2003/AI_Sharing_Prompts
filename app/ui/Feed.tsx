@@ -1,93 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import PromptCard from "./PromptCard";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
-import SkeletonLoading from "./SkeletonLoading";
-
-interface PromptCardListProps {
-  data:
-    | [
-        post: {
-          _id: string;
-          creator: {
-            _id: string;
-            username: string;
-            email: string;
-            image: string;
-          };
-          prompt: string;
-          tag: string;
-        },
-      ]
-    | undefined
-    | void;
-  handleTagClick?: (a: string) => void | undefined;
-  isLoading: boolean;
-}
-
-//////////////////////////
-
-// Generate 10 skeleton loading
-const skeletonItems = Array.from({ length: 10 }, (_, index) => index);
-
-const PromptCardList = ({
-  data,
-  handleTagClick,
-  isLoading,
-}: PromptCardListProps) => {
-  return (
-    <div className="prompt_layout mt-16">
-      {!isLoading && data ? (
-        data.map((post) => (
-          <PromptCard
-            key={post._id}
-            post={post}
-            handleTagClick={handleTagClick}
-          />
-        ))
-      ) : (
-        <>
-          {skeletonItems.map((index) => (
-            <div key={index}>
-              <SkeletonLoading />
-            </div>
-          ))}
-          s
-        </>
-      )}
-    </div>
-  );
-};
-
-/////////////////////////////////////////////
+import { fetchAllPrompts } from "../utils/apiPrompts";
+import { PromptData } from "../utils/typescript";
+import { PromptCardList } from "./PromptCardList";
+import { toast } from "sonner";
 
 const Feed = () => {
   const [searchText, setSearchText] = useState<string>("");
-  const [posts, setPosts] = useState<
-    | [
-        post: {
-          _id: string;
-          creator: {
-            _id: string;
-            username: string;
-            email: string;
-            image: string;
-          };
-          prompt: string;
-          tag: string;
-        },
-      ]
-    | undefined
-    | void
-  >();
 
   const [searchTimeout, setSearchTimeout] = useState<any>(null);
   const [searchedResults, setSearchedResults] = useState<any>([]);
@@ -95,13 +17,7 @@ const Feed = () => {
   // Fetch data from the server
   const { isPending, isError, data, error } = useQuery({
     queryKey: ["prompts"],
-    queryFn: async () => {
-      const response = await fetch("/api/prompt");
-      const data = await response.json();
-      setPosts(data);
-      return data;
-    },
-
+    queryFn: fetchAllPrompts,
     staleTime: 0,
     refetchInterval: 5000,
   });
@@ -110,7 +26,7 @@ const Feed = () => {
   const filteredPosts = (searchText: string) => {
     // Check for case sensitive search text
     const regrex = new RegExp(searchText, "i");
-    return posts?.filter(
+    return (data as [PromptData])?.filter(
       (post) =>
         regrex.test(post.prompt) ||
         regrex.test(post.creator.username) ||
@@ -159,11 +75,13 @@ const Feed = () => {
         />
       ) : (
         <PromptCardList
-          data={posts}
+          data={data}
           isLoading={isPending}
           handleTagClick={handleTagClick}
         />
       )}
+
+      {error && toast.error(error.message)}
     </section>
   );
 };

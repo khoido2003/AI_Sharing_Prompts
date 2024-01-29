@@ -9,11 +9,7 @@ import { useSession } from "next-auth/react";
 
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-
-export type Inputs = {
-  prompt: string;
-  tag: string;
-};
+import { Inputs } from "../utils/typescript";
 
 const CreatePrompt = () => {
   const [redirectTimeoutId, setRedirectTimeoutId] = useState<any>(null);

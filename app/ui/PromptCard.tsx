@@ -6,6 +6,7 @@ import { inter, roboto } from "../utils/fonts";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
+import { formatTime } from "../utils/helpers";
 
 interface PromptCardProps {
   post: {
@@ -31,9 +32,11 @@ function PromptCard({
   handleDelete,
 }: PromptCardProps) {
   const [copied, setCopied] = useState("");
+
+  // Find the current login user
   const { data: session } = useSession();
 
-  // const router = useRouter();
+  // Check the pathname in the URL
   const pathName = usePathname();
 
   const handleCopy = () => {
@@ -95,6 +98,12 @@ function PromptCard({
       >
         {post.prompt}
       </p>
+
+      <p
+        className={`${roboto.className} my-1  text-xs text-gray-700 dark:text-gray-400`}
+      >
+        {formatTime(post.dateAdded)}
+      </p>
       <p className={`blue_gradient cursor-pointer ${roboto.className} text-sm`}>
         {post.tag.split(/\s/g).map((item, i) => (
           <span
@@ -111,15 +120,15 @@ function PromptCard({
       {/* EDIT AND DELETE PROMPT CARD IF THE PROMPT BELONG TO THE CURRENT USER */}
 
       {session?.user.id === post.creator._id && pathName === "/profile" && (
-        <div className="flex-center mt-5 gap-4 border-t border-gray-100 pt-3">
+        <div className="flex-end mt-5 gap-4 border-t  border-gray-600 pt-3 dark:border-gray-100">
           <p
-            className="green_gradient font-inter cursor-pointer text-sm"
+            className="cursor-pointer rounded-md bg-black px-3 py-1 text-sm text-slate-200 hover:bg-primary-orange dark:bg-slate-200 dark:text-slate-800 dark:hover:bg-primary-orange dark:hover:text-slate-100"
             onClick={handleEdit}
           >
             Edit
           </p>
           <p
-            className="orange_gradient font-inter cursor-pointer text-sm"
+            className="cursor-pointer rounded-md bg-slate-400 px-3 py-1 text-sm text-slate-100 hover:bg-red-600 dark:bg-slate-800 dark:hover:bg-red-600"
             onClick={handleDelete}
           >
             Delete

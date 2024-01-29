@@ -1,29 +1,10 @@
 import Link from "next/link";
-import { Form } from "react-hook-form";
-import {
-  Control,
-  FieldErrors,
-  FormState,
-  SubmitHandler,
-  UseFormHandleSubmit,
-  UseFormRegister,
-  UseFormWatch,
-} from "react-hook-form";
+import { FormProps } from "react-hook-form";
 
-import { Inputs } from "../create-prompt/page";
 import { roboto } from "../utils/fonts";
 import { Toaster } from "@/components/ui/sonner";
 
-export interface FormProps {
-  type: string;
-  register: UseFormRegister<Inputs>;
-  watch: UseFormWatch<Inputs>;
-  handleSubmit: UseFormHandleSubmit<Inputs, undefined>;
-  onSubmitForm: SubmitHandler<Inputs>;
-  errors: FieldErrors<Inputs>;
-  control: Control<Inputs, any>;
-  isLoading: boolean;
-}
+import { FormPropsComponent } from "../utils/typescript";
 
 const FormComponent = ({
   type,
@@ -34,7 +15,7 @@ const FormComponent = ({
   errors,
   control,
   isLoading,
-}: FormProps) => {
+}: FormPropsComponent) => {
   return (
     <section className="flex-start w-full max-w-full flex-col">
       <h1 className="head_text">
