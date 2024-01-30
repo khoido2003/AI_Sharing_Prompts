@@ -7,7 +7,7 @@ import { DefaultSessionWithId, Inputs } from "./typescript";
  */
 
 export const fetchAllPrompts = async () => {
-  const response = await fetch("/api/prompt");
+  const response = await fetch("/api/prompt", { cache: "no-store" });
   const data = await response.json();
 
   return data;
