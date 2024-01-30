@@ -1,6 +1,8 @@
 import { connectToDB } from "../../utils/database";
 import Prompt from "../../models/prompt";
 
+export const fetchCache = "force-no-store";
+
 export const GET = async (req: Request, res: Response) => {
   try {
     await connectToDB();
