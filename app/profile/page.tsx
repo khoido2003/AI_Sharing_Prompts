@@ -9,9 +9,12 @@ import ProfileComponent from "../ui/Profile";
 import { PromptData } from "../utils/typescript";
 import { Toaster, toast } from "sonner";
 import { useEffect } from "react";
+import { skeletonItems } from "../utils/helpers";
+import SkeletonLoading from "../ui/SkeletonLoading";
 
 const Profile = () => {
-  const { data: session } = useSession();
+  const { data: session, status: sessionStatus } = useSession();
+  console.log(session);
 
   const router = useRouter();
 
@@ -19,9 +22,13 @@ const Profile = () => {
   const { isPending, data, error, isError } = useQuery({
     queryKey: ["user-posts"],
     queryFn: async () => {
+      if (!session) {
+        return null; // or handle the case when session is undefined
+      }
+
       return await fetchCurrentUserPosts(session);
     },
-
+    refetchInterval: 1000,
     staleTime: 0,
   });
 
@@ -51,26 +58,42 @@ const Profile = () => {
     }
   };
 
-  //If user is not logged in then not allowed to create new post
-  // useEffect(() => {
-  //   if (!session) {
-  //     router.push("/");
-  //     return;
-  //   }
-  // }, [router, session]);
+  // If user is not logged in then not allowed to create a new post
+  useEffect(() => {
+    if (sessionStatus === "loading") {
+      // Loading state, you can render a loading spinner or other UI indicator
+      return;
+    }
+
+    if (!session) {
+      router.push("/");
+    }
+  }, [router, session, sessionStatus]);
 
   return (
     <>
-      <Toaster position="top-center" />
-      <ProfileComponent
-        name={`Hello, ${session?.user?.name}`}
-        desc="Welcome back to your personalized page."
-        data={data as [PromptData] | void | undefined}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-        isLoading={isPending}
-        error={error}
-      />
+      {!data ? (
+        <div className="prompt_layout">
+          {skeletonItems.map((index) => (
+            <div key={index}>
+              <SkeletonLoading />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <>
+          <Toaster position="top-center" />
+          <ProfileComponent
+            name={`Hello, ${session?.user?.name}`}
+            desc="Welcome back to your personalized page."
+            data={data as [PromptData] | void | undefined}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+            isLoading={isPending}
+            error={error}
+          />
+        </>
+      )}
     </>
   );
 };
