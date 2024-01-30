@@ -1,6 +1,6 @@
 export const SkeletonFormLoading = () => {
   return (
-    <div className="glassmorphism mt-10 flex w-full max-w-2xl flex-col gap-7" s>
+    <div className="glassmorphism mt-10 flex w-full max-w-2xl flex-col gap-7">
       <div role="status" className="max-w-lg animate-pulse space-y-2.5">
         <div className="flex w-full items-center">
           <div className="h-2.5 w-32 rounded-full bg-gray-400 dark:bg-gray-400"></div>
