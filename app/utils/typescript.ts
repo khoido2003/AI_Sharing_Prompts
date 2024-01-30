@@ -34,7 +34,7 @@ export interface PromptCardProps {
     };
     prompt: string;
     tag: string;
-    dateAdded: string;
+    dateAdded?: string;
   };
   handleTagClick?: (a: string) => void;
   handleEdit?: () => void;
