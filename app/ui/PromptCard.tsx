@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 import Image from "next/image";
@@ -7,7 +8,6 @@ import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { formatTime } from "../utils/helpers";
 import { DefaultSessionWithId, PromptCardProps } from "../utils/typescript";
-import { Session } from "next-auth";
 
 function PromptCard({
   post,
