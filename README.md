@@ -14,6 +14,21 @@ Welcome to PromptWorld – An open-source AI prompting tool for the modern world
 
 - **Dark Mode:** Enjoy a comfortable browsing experience with the built-in dark mode. Toggle between light and dark themes to suit your preference.
 
+## 📷 Screenshots
+
+![PromptWorld Home](./screenshots/screenshot-1.png)
+_Explore a variety of creative prompts on the PromptWorld home page._
+
+![Create Prompt](./screenshots/screenshot-3.png)
+_Easily create and share your own prompts with the PromptWorld community._
+
+![Discover Prompts](./screenshots/screenshot-2.png)
+_Discover diverse prompts contributed by the PromptWorld community._
+
+## 🌐 Try it Out
+
+Visit [PromptWorld](https://prompt-world.netlify.app/) to experience the platform!
+
 ## 🛠️ Technologies Used
 
 - **TypeScript:** Enhance your development experience with TypeScript's static typing, making your code more robust and maintainable.
