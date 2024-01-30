@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { fetchAllPrompts } from "../utils/apiPrompts";
 import { PromptData } from "../utils/typescript";
-import { PromptCardList } from "@/app/";
+import { PromptCardList } from "./PromptCardList";
 import { toast } from "sonner";
 
 const Feed = () => {
