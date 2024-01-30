@@ -28,6 +28,7 @@ _Discover diverse prompts contributed by the PromptWorld community._
 ## 🌐 Try it Out
 
 Visit [PromptWorld](https://prompt-world.netlify.app/) to experience the platform!
+![QR CODE](./screenshots/QR-code.png)
 
 ## 🛠️ Technologies Used
 
