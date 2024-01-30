@@ -32,7 +32,7 @@ const EditForm = () => {
   } = useForm<Inputs>();
 
   // Access the current user information through session
-  const { data: session } = useSession();
+  const { data: session, status: sessionStatus } = useSession();
 
   // Reset the date when doing mutation with React query later
   const queryClient = useQueryClient();
@@ -44,6 +44,7 @@ const EditForm = () => {
       return await fetchCurrentPost(promptId);
     },
     staleTime: 0,
+    refetchInterval: 10000,
   });
 
   const mutation = useMutation({
@@ -80,13 +81,17 @@ const EditForm = () => {
     };
   }, [redirectTimeoutId]);
 
-  //If user is not logged in then not allowed to create new post
+  // If user is not logged in then not allowed to create a new post
   useEffect(() => {
-    if (!session) {
-      router.push("/");
+    if (sessionStatus === "loading") {
+      // Loading state, you can render a loading spinner or other UI indicator
       return;
     }
-  }, [router, session]);
+
+    if (!session) {
+      router.push("/");
+    }
+  }, [router, session, sessionStatus]);
 
   const onSubmit: SubmitHandler<Inputs> = (formData: Inputs) => {
     mutation.mutate({ promptId, formData });
