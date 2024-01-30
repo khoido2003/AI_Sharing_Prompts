@@ -3,7 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+
 import { fetchCurrentUserPosts } from "../utils/apiPrompts";
 import ProfileComponent from "../ui/Profile";
 import { PromptData } from "../utils/typescript";

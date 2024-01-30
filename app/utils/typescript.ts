@@ -64,6 +64,11 @@ export interface FormPropsComponent {
   errors: FieldErrors<Inputs>;
   control: Control<Inputs, any>;
   isLoading: boolean;
+  data?: {
+    prompt: string;
+    tag: string;
+  };
+  isFetchingCurrentPost?: boolean;
 }
 
 ///////////////////////////////

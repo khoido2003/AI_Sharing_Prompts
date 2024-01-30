@@ -10,6 +10,8 @@ import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Inputs } from "../utils/typescript";
+import { createNewPost } from "../utils/apiPrompts";
+import { Session } from "next-auth";
 
 const CreatePrompt = () => {
   const [redirectTimeoutId, setRedirectTimeoutId] = useState<any>(null);
@@ -26,16 +28,14 @@ const CreatePrompt = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: (formData: Inputs) => {
-      return fetch("/api/prompt/new", {
-        method: "POST",
-        body: JSON.stringify({
-          prompt: formData.prompt,
-          userId: session?.user?.id,
-          tag: formData.tag,
-          dateAdded: new Date(Date.now()).toISOString(),
-        }),
-      });
+    mutationFn: ({
+      formData,
+      session,
+    }: {
+      formData: Inputs;
+      session: Session | null | undefined;
+    }) => {
+      return createNewPost({ formData, session });
     },
 
     onSuccess: () => {
@@ -54,14 +54,14 @@ const CreatePrompt = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
+  const onSubmit: SubmitHandler<Inputs> = (formData: Inputs) => {
     // If user is not logged in then not allowed to create new post
     if (!session) {
       toast.error("Please login to create new post!");
       return;
     }
 
-    mutation.mutate(data);
+    mutation.mutate({ formData, session });
   };
 
   // Clear the timeout when the component unmounts

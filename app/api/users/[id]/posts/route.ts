@@ -7,9 +7,9 @@ export const GET = async (
 ) => {
   try {
     await connectToDB();
-    const prompts = await Prompt.find({ creator: params.id }).populate(
-      "creator",
-    );
+    const prompts = await Prompt.find({ creator: params.id })
+      .populate("creator")
+      .sort("-dateAdded");
 
     return new Response(JSON.stringify(prompts), { status: 200 });
   } catch (err) {
