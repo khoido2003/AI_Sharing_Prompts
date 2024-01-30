@@ -1,0 +1,59 @@
+VIETNAMESE VERSION
+
+PromptWolrd: Giải phóng sức sáng tạo trong kỷ nguyên AI
+Ngày xửa ngày xưa, trong thế giới công nghệ nhộn nhịp...
+Ở trung tâm của sự đổi mới, nơi ranh giới của trí tuệ nhân tạo liên tục bị đẩy lùi, một nhóm những người đam mê đã hình dung ra một nền tảng có thể thu hẹp khoảng cách giữa sự sáng tạo và AI. Tầm nhìn này đã dẫn đến sự ra đời của RapidWorld – một công cụ nhắc nhở AI mã nguồn mở độc đáo dành cho thế giới hiện đại.
+
+Tia sáng của cảm hứng
+Câu chuyện của chúng tôi bắt đầu với Alex, một nhà nghiên cứu AI đầy đam mê, đang vật lộn với thử thách tạo ra các gợi ý sáng tạo để đào tạo các mô hình ngôn ngữ. Thất vọng vì sự thiếu đa dạng và cảm hứng trong các bộ dữ liệu nhanh chóng hiện có, Alex đã nhìn thấy cơ hội để tạo ra thứ gì đó phi thường. Và do đó, PromptWolrd đã được hình thành – một nền tảng trao quyền cho các cá nhân và nhà phát triển AI khám phá, tạo và chia sẻ những gợi ý khơi dậy trí tưởng tượng.
+
+Sự ra đời của Thế giới Prompt
+Với đội ngũ nhà phát triển, nhà thiết kế và những người đam mê AI xuất sắc, hành trình đưa PromptWolrd vào cuộc sống đã bắt đầu. Họ đã chọn các công nghệ tiên tiến của TypeScript, Next.js, Tailwind CSS, React Query và MongoDB để đảm bảo trải nghiệm người dùng liền mạch và mạnh mẽ.
+
+Tạo, chia sẻ và cộng tác
+PromptWolrd nổi lên như một trung tâm hợp tác nơi người dùng có thể dễ dàng tạo, chia sẻ và khám phá vô số lời nhắc. Nền tảng này đã trở thành nơi hội tụ của nhiều ý tưởng, nơi hội tụ các nhà phát triển AI, nhà văn và nhà sáng tạo từ nhiều lĩnh vực khác nhau để đóng góp và tận dụng sức mạnh của các lời nhắc đa dạng.
+
+Phép thuật chế độ bóng tối
+Nhận thấy tầm quan trọng của trải nghiệm người dùng, nhóm đã giới thiệu tính năng chế độ tối đẹp mắt. Người dùng có thể chuyển đổi liền mạch giữa các chủ đề sáng và tối, nâng cao khả năng đọc và mang lại trải nghiệm duyệt web thoải mái, cả ngày lẫn đêm.
+
+PromptWolrd đang hoạt động
+Tác động của PromptWolrd nhanh chóng lan rộng khắp các ngành. Các nhà phát triển AI đã tìm thấy rất nhiều lời nhắc để nâng cao khả năng của mô hình của họ. Các nhà văn và người sáng tạo nội dung đã khám phá ra nguồn cảm hứng cho các dự án của họ. PromptWolrd trở thành minh chứng cho sức mạnh tổng hợp giữa sức sáng tạo của con người và trí tuệ máy móc.
+
+Cộng đồng những người đổi mới
+PromptWolrd phát triển mạnh mẽ không chỉ với tư cách là một công cụ mà còn là một cộng đồng những người đổi mới. Các hội thảo, hackathons và các dự án hợp tác đã phát triển mạnh mẽ trên nền tảng này. Nỗ lực từng là cá nhân của Alex và nhóm đã phát triển thành một phong trào toàn cầu, thúc đẩy tương lai của sự đổi mới AI.
+
+Tham gia cùng chúng tôi trên hành trình
+Hôm nay, PromptWolrd mời bạn tham gia hành trình sáng tạo, khám phá và đổi mới này. Cho dù bạn là người đam mê AI, nhà văn hay người đang tìm kiếm nguồn cảm hứng, PromptWolrd luôn sẵn sàng khơi dậy trí tưởng tượng của bạn.
+
+Giải phóng sự sáng tạo. Trao quyền cho sự đổi mới. Chào mừng đến với PromptWorld
+
+//////////////////////////////////////////////////////////////////////
+
+ENGLISH VERSION
+
+PromptWorld: Unleashing Creativity in the AI Era
+Once upon a time in the bustling world of technology...
+In the heart of innovation, where the boundaries of artificial intelligence were constantly being pushed, a group of enthusiasts envisioned a platform that would bridge the gap between creativity and AI. This vision led to the birth of PromptWorld – a unique open-source AI prompting tool for the modern world.
+
+The Spark of Inspiration
+Our story begins with Alex, a passionate AI researcher, grappling with the challenge of generating creative prompts for training language models. Frustrated by the lack of diversity and inspiration in existing prompt datasets, Alex saw an opportunity to create something extraordinary. And thus, PromptWorld was conceived – a platform that would empower individuals and AI developers to discover, create, and share prompts that spark imagination.
+
+The Birth of PromptWorld
+With a stellar team of developers, designers, and AI enthusiasts, the journey to bring PromptWorld to life began. They chose the cutting-edge technologies of TypeScript, Next.js, Tailwind CSS, React Query, and MongoDB to ensure a seamless and robust user experience.
+
+Creating, Sharing, and Collaborating
+PromptWorld emerged as a collaborative hub where users could easily create, share, and explore a myriad of prompts. The platform became a melting pot of ideas, a place where AI developers, writers, and creatives from various fields converged to contribute and leverage the power of diverse prompts.
+
+The Dark Mode Magic
+Recognizing the importance of user experience, the team introduced a sleek dark mode feature. Users could seamlessly toggle between light and dark themes, enhancing readability and providing a comfortable browsing experience, day or night.
+
+PromptWorld in Action
+The impact of PromptWorld quickly rippled across industries. AI developers found a treasure trove of prompts to enhance the capabilities of their models. Writers and content creators discovered a wellspring of inspiration for their projects. PromptWorld became a testament to the synergy between human creativity and machine intelligence.
+
+A Community of Innovators
+PromptWorld thrived not just as a tool but as a community of innovators. Workshops, hackathons, and collaborative projects flourished within the platform. The once individual endeavor of Alex and the team had evolved into a global movement, driving the future of AI innovation.
+
+Join Us on the Journey
+Today, PromptWorld invites you to join this journey of creativity, exploration, and innovation. Whether you're an AI enthusiast, a writer, or someone looking for inspiration, PromptWorld is here to spark your imagination.
+
+Unleash Creativity. Empower Innovation. Welcome to PromptWorld.
