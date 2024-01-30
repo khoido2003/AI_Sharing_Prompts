@@ -1,15 +1,16 @@
 import { connectToDB } from "../../utils/database";
 import Prompt from "../../models/prompt";
 
-export const GET = async (req: Request, res: Response) => {
+export const GET = async (req, res) => {
   try {
     await connectToDB();
     const prompts = await Prompt.find({})
       .populate("creator")
       .sort("-dateAdded");
 
-    return new Response(JSON.stringify(prompts), { status: 200 });
+    res.status(200).json(prompts);
   } catch (err) {
-    return new Response("Failed to fetch prompts!", { status: 500 });
+    console.error("Failed to fetch prompts:", err);
+    res.status(500).send("Failed to fetch prompts!");
   }
 };
