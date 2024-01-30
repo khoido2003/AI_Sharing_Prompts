@@ -59,7 +59,7 @@ const Profile = () => {
     <>
       <Toaster position="top-center" />
       <ProfileComponent
-        name={session?.user?.name}
+        name={`Hello, ${session?.user?.name}`}
         desc="Welcome back to your personalized page."
         data={data as [PromptData] | void | undefined}
         handleEdit={handleEdit}

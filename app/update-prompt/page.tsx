@@ -71,6 +71,15 @@ const EditForm = () => {
     },
   });
 
+  // Clear the timeout when the component unmounts
+  useEffect(() => {
+    return () => {
+      if (redirectTimeoutId) {
+        clearTimeout(redirectTimeoutId);
+      }
+    };
+  }, [redirectTimeoutId]);
+
   //If user is not logged in then not allowed to create new post
   if (!session) {
     router.push("/");
@@ -80,15 +89,6 @@ const EditForm = () => {
   const onSubmit: SubmitHandler<Inputs> = (formData: Inputs) => {
     mutation.mutate({ promptId, formData });
   };
-
-  // Clear the timeout when the component unmounts
-  useEffect(() => {
-    return () => {
-      if (redirectTimeoutId) {
-        clearTimeout(redirectTimeoutId);
-      }
-    };
-  }, [redirectTimeoutId]);
 
   return (
     <FormComponent

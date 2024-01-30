@@ -1,3 +1,4 @@
+import { DefaultSession } from "next-auth";
 import {
   Control,
   FieldErrors,
@@ -6,6 +7,39 @@ import {
   UseFormRegister,
   UseFormWatch,
 } from "react-hook-form";
+
+////////////////////////
+/**
+ * Interface for the session in AuthJS
+ */
+export interface DefaultSessionWithId extends DefaultSession {
+  user?: {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+    id?: string | null; // Add the 'id' property
+  };
+}
+
+////////////////////////
+
+export interface PromptCardProps {
+  post: {
+    _id: string;
+    creator: {
+      _id: string;
+      username: string;
+      email: string;
+      image: string;
+    };
+    prompt: string;
+    tag: string;
+    dateAdded: string;
+  };
+  handleTagClick?: (a: string) => void;
+  handleEdit?: () => void;
+  handleDelete?: () => void;
+}
 
 ////////////////////////
 
@@ -76,9 +110,9 @@ export interface FormPropsComponent {
 export interface ProfileComponentProps {
   name: string | null | undefined;
   desc: string | null | undefined;
-  data: [PromptData] | void | undefined;
-  handleEdit: (post: { _id: string }) => void;
-  handleDelete: (post: { _id: string }) => void;
-  isLoading: boolean;
-  error: Error | null;
+  data?: [PromptData] | void | undefined;
+  handleEdit?: (post: { _id: string }) => void;
+  handleDelete?: (post: { _id: string }) => void;
+  isLoading?: boolean;
+  error?: Error | null;
 }

@@ -17,7 +17,7 @@ const ProfileComponent = ({
     <section className="w-full">
       <h1 className="head_text">
         {" "}
-        <span className="blue_gradient">Hello, {name}</span>
+        <span className="blue_gradient">{name}</span>
       </h1>
 
       <p className="desc">{desc}</p>

@@ -1,5 +1,5 @@
 import { Session } from "next-auth";
-import { Inputs } from "./typescript";
+import { DefaultSessionWithId, Inputs } from "./typescript";
 
 /**
  * Fetch all prompts from the database to display in the Feed
@@ -21,7 +21,9 @@ export const fetchAllPrompts = async () => {
  */
 
 export const fetchCurrentUserPosts = async (session: Session | null) => {
-  const response = await fetch(`/api/users/${session?.user?.id}/posts`);
+  const response = await fetch(
+    `/api/users/${(session as DefaultSessionWithId)?.user?.id}/posts`,
+  );
   const data = await response.json();
 
   return data;
@@ -43,7 +45,7 @@ export const createNewPost = async ({
     method: "POST",
     body: JSON.stringify({
       prompt: formData.prompt,
-      userId: session?.user?.id,
+      userId: (session as DefaultSessionWithId)?.user?.id,
       tag: formData.tag,
       dateAdded: new Date(Date.now()).toISOString(),
     }),
@@ -76,6 +78,15 @@ export const updateCurrentPost = async ({
 export const fetchCurrentPost = async (promptId: string | null) => {
   const res = await fetch(`/api/prompt/${promptId}`);
   const data = await res.json();
+
+  return data;
+};
+
+///////////////////////////////////
+
+export const fecthOtherUserPosts = async (params: { id: string }) => {
+  const response = await fetch(`/api/users/${params?.id}/posts`);
+  const data = await response.json();
 
   return data;
 };

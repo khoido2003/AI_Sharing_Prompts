@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import { fetchAllPrompts } from "../utils/apiPrompts";
@@ -34,7 +34,7 @@ const Feed = () => {
     );
   };
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     clearTimeout(searchTimeout);
     setSearchText(e.target.value);
 
