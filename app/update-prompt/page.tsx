@@ -80,11 +80,11 @@ const EditForm = () => {
     };
   }, [redirectTimeoutId]);
 
-  //If user is not logged in then not allowed to create new post
-  if (!session) {
-    router.push("/");
-    return;
-  }
+  // //If user is not logged in then not allowed to create new post
+  // if (!session) {
+  //   router.push("/");
+  //   return;
+  // }
 
   const onSubmit: SubmitHandler<Inputs> = (formData: Inputs) => {
     mutation.mutate({ promptId, formData });
