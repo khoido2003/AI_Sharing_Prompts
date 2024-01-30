@@ -64,14 +64,14 @@ const CreatePrompt = () => {
     mutation.mutate({ formData, session });
   };
 
-  // Clear the timeout when the component unmounts
-  useEffect(() => {
-    return () => {
-      if (redirectTimeoutId) {
-        clearTimeout(redirectTimeoutId);
-      }
-    };
-  }, [redirectTimeoutId]);
+  // // Clear the timeout when the component unmounts
+  // useEffect(() => {
+  //   return () => {
+  //     if (redirectTimeoutId) {
+  //       clearTimeout(redirectTimeoutId);
+  //     }
+  //   };
+  // }, [redirectTimeoutId]);
 
   return (
     <FormComponent

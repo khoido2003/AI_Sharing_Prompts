@@ -72,13 +72,11 @@ const EditForm = () => {
   });
 
   // Clear the timeout when the component unmounts
-  useEffect(() => {
-    return () => {
-      if (redirectTimeoutId) {
-        clearTimeout(redirectTimeoutId);
-      }
-    };
-  }, [redirectTimeoutId]);
+  // useEffect(() => {
+  //   if (redirectTimeoutId && typeof window !== 'undefined') {
+  //     clearTimeout(redirectTimeoutId);
+  //   }
+  // }, [redirectTimeoutId]);
 
   //If user is not logged in then not allowed to create new post
   if (!session) {
