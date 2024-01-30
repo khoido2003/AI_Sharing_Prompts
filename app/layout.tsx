@@ -1,6 +1,7 @@
 "use client";
 
 import "./globals.css";
+import BackGround from "./ui/BackGround";
 import Nav from "./ui/Nav";
 import Provider from "./ui/Provider";
 import { ThemeProvider } from "./utils/theme-provider";
@@ -26,9 +27,7 @@ export default function RootLayout({
             // disableTransitionOnChange
           >
             <Provider>
-              <div className="main dark:dark_main">
-                <div className="gradient"></div>
-              </div>
+              <BackGround />
 
               <main className="app">
                 <Nav />
