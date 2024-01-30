@@ -8,6 +8,7 @@ import { fetchCurrentUserPosts } from "../utils/apiPrompts";
 import ProfileComponent from "../ui/Profile";
 import { PromptData } from "../utils/typescript";
 import { Toaster, toast } from "sonner";
+import { useEffect } from "react";
 
 const Profile = () => {
   const { data: session } = useSession();
@@ -50,10 +51,13 @@ const Profile = () => {
     }
   };
 
-  if (!session) {
-    router.push("/");
-    return;
-  }
+  //If user is not logged in then not allowed to create new post
+  useEffect(() => {
+    if (!session) {
+      router.push("/");
+      return;
+    }
+  }, [router, session]);
 
   return (
     <>

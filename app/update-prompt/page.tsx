@@ -81,10 +81,12 @@ const EditForm = () => {
   }, [redirectTimeoutId]);
 
   //If user is not logged in then not allowed to create new post
-  if (!session) {
-    router.push("/");
-    return;
-  }
+  useEffect(() => {
+    if (!session) {
+      router.push("/");
+      return;
+    }
+  }, [router, session]);
 
   const onSubmit: SubmitHandler<Inputs> = (formData: Inputs) => {
     mutation.mutate({ promptId, formData });
