@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Feed from "./ui/Feed";
 
 export const metadata: Metadata = {
-  title: "PrompWorld - Discover $ Share",
+  title: "PrompWorld - Discover & Share",
   description: "Let your creative idea gone wild!!!",
 };
 
