@@ -52,12 +52,12 @@ const Profile = () => {
   };
 
   //If user is not logged in then not allowed to create new post
-  useEffect(() => {
-    if (!session) {
-      router.push("/");
-      return;
-    }
-  }, [router, session]);
+  // useEffect(() => {
+  //   if (!session) {
+  //     router.push("/");
+  //     return;
+  //   }
+  // }, [router, session]);
 
   return (
     <>
