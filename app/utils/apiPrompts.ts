@@ -1,5 +1,6 @@
 import { Session } from "next-auth";
 import { DefaultSessionWithId, Inputs } from "./typescript";
+import { unstable_noStore as noStore } from "next/cache";
 
 /**
  * Fetch all prompts from the database to display in the Feed
@@ -7,6 +8,7 @@ import { DefaultSessionWithId, Inputs } from "./typescript";
  */
 
 export const fetchAllPrompts = async () => {
+  noStore();
   const response = await fetch("/api/prompt", { cache: "no-store" });
   const data = await response.json();
 
@@ -21,6 +23,7 @@ export const fetchAllPrompts = async () => {
  */
 
 export const fetchCurrentUserPosts = async (session: Session | null) => {
+  noStore();
   const response = await fetch(
     `/api/users/${(session as DefaultSessionWithId)?.user?.id}/posts`,
   );
@@ -41,6 +44,7 @@ export const createNewPost = async ({
   formData: Inputs;
   session: Session | null | undefined;
 }) => {
+  noStore();
   const res = await fetch("/api/prompt/new", {
     method: "POST",
     body: JSON.stringify({
@@ -63,6 +67,7 @@ export const updateCurrentPost = async ({
   promptId: string | null;
   formData: Inputs;
 }) => {
+  noStore();
   const res = await fetch(`/api/prompt/${promptId}`, {
     method: "PATCH",
     body: JSON.stringify({
@@ -76,6 +81,7 @@ export const updateCurrentPost = async ({
 //////////////////////////////
 
 export const fetchCurrentPost = async (promptId: string | null) => {
+  noStore();
   const res = await fetch(`/api/prompt/${promptId}`);
   const data = await res.json();
 
@@ -85,6 +91,7 @@ export const fetchCurrentPost = async (promptId: string | null) => {
 ///////////////////////////////////
 
 export const fecthOtherUserPosts = async (params: { id: string }) => {
+  noStore();
   const response = await fetch(`/api/users/${params?.id}/posts`);
   const data = await response.json();
 
