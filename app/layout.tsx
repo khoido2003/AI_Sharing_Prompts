@@ -2,7 +2,7 @@ import React from "react";
 import "./globals.css";
 import BackGround from "../components/BackGround";
 import Nav from "../components/Nav";
-import Provider from "../components/Provider";
+import Provider from "../providers/provider";
 import { ThemeProvider } from "../providers/theme-provider";
 import { QueryProvider } from "@/providers/query-provider";
 

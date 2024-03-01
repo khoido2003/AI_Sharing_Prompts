@@ -5,7 +5,7 @@ import { roboto } from "../utils/fonts";
 import { Toaster } from "@/components/ui/sonner";
 
 import { FormPropsComponent } from "../utils/typescript";
-import { SkeletonFormLoading } from "./SkeletonFormLoading";
+import { SkeletonFormLoading } from "./loading/SkeletonFormLoading";
 
 const FormComponent = ({
   type,

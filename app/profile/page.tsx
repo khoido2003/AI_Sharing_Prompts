@@ -10,7 +10,7 @@ import { PromptData } from "../../utils/typescript";
 import { Toaster, toast } from "sonner";
 import { useEffect } from "react";
 import { skeletonItems } from "../../utils/helpers";
-import SkeletonLoading from "../../components/SkeletonLoading";
+import SkeletonLoading from "../../components/loading/SkeletonLoading";
 
 const Profile = () => {
   const { data: session, status: sessionStatus } = useSession();

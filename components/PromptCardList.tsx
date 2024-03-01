@@ -2,7 +2,7 @@ import { skeletonItems } from "../utils/helpers";
 import { PromptCardListProps } from "../utils/typescript";
 
 import PromptCard from "./PromptCard";
-import SkeletonLoading from "./SkeletonLoading";
+import SkeletonLoading from "./loading/SkeletonLoading";
 
 export const PromptCardList = ({
   data,
