@@ -18,6 +18,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { inter } from "../utils/fonts";
 import ToggleButton from "./ToggleButton";
+import { LoaderIcon } from "lucide-react";
 
 type ImgSrc = string | StaticImport;
 
@@ -60,6 +61,12 @@ function Nav() {
 
       {/* Desktop Navigation */}
       <div className="hidden sm:flex">
+        {/* Create loading state */}
+        {session === undefined && (
+          <div>
+            <LoaderIcon className="h-5 w-6 animate-spin" />
+          </div>
+        )}
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">

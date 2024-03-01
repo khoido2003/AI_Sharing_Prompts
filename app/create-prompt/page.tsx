@@ -3,14 +3,14 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useEffect, useState } from "react";
 
-import FormComponent from "../ui/Form";
+import FormComponent from "../../components/Form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { Inputs } from "../utils/typescript";
-import { createNewPost } from "../utils/apiPrompts";
+import { Inputs } from "../../utils/typescript";
+import { createNewPost } from "../../utils/apiPrompts";
 import { Session } from "next-auth";
 
 const CreatePrompt = () => {

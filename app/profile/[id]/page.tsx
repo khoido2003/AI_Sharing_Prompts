@@ -1,7 +1,7 @@
 "use client";
 
-import ProfileComponent from "@/app/ui/Profile";
-import { fecthOtherUserPosts } from "@/app/utils/apiPrompts";
+import ProfileComponent from "@/components/Profile";
+import { fecthOtherUserPosts } from "@/utils/apiPrompts";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 

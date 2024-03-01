@@ -4,13 +4,13 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-import { fetchCurrentUserPosts } from "../utils/apiPrompts";
-import ProfileComponent from "../ui/Profile";
-import { PromptData } from "../utils/typescript";
+import { fetchCurrentUserPosts } from "../../utils/apiPrompts";
+import ProfileComponent from "../../components/Profile";
+import { PromptData } from "../../utils/typescript";
 import { Toaster, toast } from "sonner";
 import { useEffect } from "react";
-import { skeletonItems } from "../utils/helpers";
-import SkeletonLoading from "../ui/SkeletonLoading";
+import { skeletonItems } from "../../utils/helpers";
+import SkeletonLoading from "../../components/SkeletonLoading";
 
 const Profile = () => {
   const { data: session, status: sessionStatus } = useSession();

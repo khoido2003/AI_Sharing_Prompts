@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 import { skeletonItems } from "../utils/helpers";
 import { ProfileComponentProps } from "../utils/typescript";
-import PromptCard from "./PromptCard";
+import PromptCard from "../app/ui/PromptCard";
 import SkeletonLoading from "./SkeletonLoading";
 
 const ProfileComponent = ({

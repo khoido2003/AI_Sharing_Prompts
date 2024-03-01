@@ -2,12 +2,12 @@
 "use client";
 
 import Image from "next/image";
-import { inter, roboto } from "../utils/fonts";
+import { inter, roboto } from "@/utils/fonts";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
-import { formatTime } from "../utils/helpers";
-import { DefaultSessionWithId, PromptCardProps } from "../utils/typescript";
+import { formatTime } from "@/utils/helpers";
+import { DefaultSessionWithId, PromptCardProps } from "../../utils/typescript";
 
 function PromptCard({
   post,

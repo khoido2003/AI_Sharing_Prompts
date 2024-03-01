@@ -1,14 +1,14 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import FormComponent from "../ui/Form";
+import FormComponent from "../../components/Form";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Inputs } from "../utils/typescript";
+import { Inputs } from "../../utils/typescript";
 import { useSession } from "next-auth/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import { fetchCurrentPost, updateCurrentPost } from "../utils/apiPrompts";
+import { fetchCurrentPost, updateCurrentPost } from "../../utils/apiPrompts";
 import { toast } from "sonner";
 
 const EditForm = () => {

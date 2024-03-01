@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Feed from "./ui/Feed";
+import Feed from "../components/Feed";
 
 export const metadata: Metadata = {
   title: "PrompWorld - Discover & Share",
