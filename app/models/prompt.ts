@@ -21,6 +21,8 @@ const PromptSchema = new mongoose.Schema({
   },
 });
 
+PromptSchema.index({ prompt: "text", tag: "text" });
+
 const Prompt = models.Prompt || mongoose.model("Prompt", PromptSchema);
 
 export default Prompt;

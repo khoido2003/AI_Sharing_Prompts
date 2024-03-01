@@ -7,8 +7,10 @@ import { fetchAllPrompts } from "../utils/apiPrompts";
 import { PromptData } from "../utils/typescript";
 import { PromptCardList } from "./PromptCardList";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const Feed = () => {
+  const router = useRouter();
   const [searchText, setSearchText] = useState<string>("");
 
   const [searchTimeout, setSearchTimeout] = useState<any>(null);
