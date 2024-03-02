@@ -27,7 +27,7 @@ _Discover diverse prompts contributed by the PromptWorld community._
 
 ## 🌐 Try it Out
 
-Visit [PromptWorld](https://prompt-world.netlify.app/) to experience the platform!
+Visit [PromptWorld](https://prompt-world-exploring.vercel.app/) to experience the platform!
 # <img src="./screenshots/QR-code.png" alt="PromptWorld Logo" width="300"/>
 
 ## 🛠️ Technologies Used
