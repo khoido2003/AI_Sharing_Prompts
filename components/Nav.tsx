@@ -1,7 +1,6 @@
 "use client";
 
 import { BuiltInProviderType } from "next-auth/providers/index";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 import { useEffect, useState } from "react";
 
@@ -19,8 +18,9 @@ import Image from "next/image";
 import { inter } from "../utils/fonts";
 import ToggleButton from "./ToggleButton";
 import { LoaderIcon } from "lucide-react";
-
-type ImgSrc = string | StaticImport;
+import { DesktopNav } from "./desktop-nav";
+import { MobileNav } from "./mobile-nav";
+import { AuthLoading } from "./loading/auth-loading";
 
 function Nav() {
   const { data: session } = useSession();
@@ -30,16 +30,12 @@ function Nav() {
     ClientSafeProvider
   > | null>(null);
 
-  // Toggle button in mobile view - Hide in larger view
-  const [toggleDropdown, setToggleDropDown] = useState<boolean>(false);
-
   useEffect(() => {
     const setProvidersFn = async () => {
       const res = await getProviders();
 
       setProviders(res);
     };
-
     setProvidersFn();
   }, []);
 
@@ -62,35 +58,9 @@ function Nav() {
       {/* Desktop Navigation */}
       <div className="hidden sm:flex">
         {/* Create loading state */}
-        {session === undefined && (
-          <div>
-            <LoaderIcon className="h-5 w-6 animate-spin" />
-          </div>
-        )}
+        {session === undefined && <AuthLoading />}
         {session?.user ? (
-          <div className="flex gap-3 md:gap-5">
-            <Link href="/create-prompt" className="black_btn">
-              Create Post
-            </Link>
-
-            <button
-              type="button"
-              onClick={() => signOut()}
-              className="outline_btn"
-            >
-              Sign Out
-            </button>
-
-            <Link href="/profile">
-              <Image
-                src={session?.user.image as ImgSrc}
-                width={37}
-                alt="User Photo"
-                height={37}
-                className="rounded-full"
-              />
-            </Link>
-          </div>
+          <DesktopNav session={session} signOut={signOut} />
         ) : (
           <>
             {providers &&
@@ -110,49 +80,10 @@ function Nav() {
 
       {/* MOBILE NAVIGATION */}
       <div className="relative flex sm:hidden">
+        {/* Create loading state */}
+        {session === undefined && <AuthLoading />}
         {session?.user ? (
-          <div className="flex">
-            <Image
-              src={session?.user.image as string}
-              width={37}
-              height={37}
-              className="cursor-pointer rounded-full"
-              alt="User profile image"
-              onClick={() => {
-                setToggleDropDown((prev) => !prev);
-              }}
-            />
-
-            {toggleDropdown && (
-              <div className="dropdown">
-                <Link
-                  href="/profile"
-                  className="dropdown_link"
-                  onClick={() => setToggleDropDown(false)}
-                >
-                  My profile
-                </Link>
-                <Link
-                  href="/create-prompt"
-                  className="dropdown_link"
-                  onClick={() => setToggleDropDown(false)}
-                >
-                  Create Prompt
-                </Link>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    setToggleDropDown(false);
-                    signOut();
-                  }}
-                  className="black_btn mt-5 w-full"
-                >
-                  Sign out
-                </button>
-              </div>
-            )}
-          </div>
+          <MobileNav session={session} signOut={signOut} />
         ) : (
           <>
             {providers &&
