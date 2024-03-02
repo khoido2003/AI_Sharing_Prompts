@@ -28,7 +28,8 @@ _Discover diverse prompts contributed by the PromptWorld community._
 ## 🌐 Try it Out
 
 Visit [PromptWorld](https://prompt-world-exploring.vercel.app/) to experience the platform!
-# <img src="./screenshots/QR-code.png" alt="PromptWorld Logo" width="300"/>
+
+# <img src="./screenshots/qr-code.png" alt="PromptWorld Logo" width="300"/>
 
 ## 🛠️ Technologies Used
 
@@ -71,6 +72,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 We welcome contributions from the community. If you'd like to contribute to PromptWorld, please follow our contribution guidelines.
 
 ## 📄 License
+
 PromptWorld is open-source code. Feel free to use, modify, and distribute the code
 
 Happy prompting! 🚀
