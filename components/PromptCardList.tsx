@@ -26,7 +26,6 @@ export const PromptCardList = ({
               <SkeletonLoading />
             </div>
           ))}
-          s
         </>
       )}
     </div>
