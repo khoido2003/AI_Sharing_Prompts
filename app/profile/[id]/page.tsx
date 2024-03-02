@@ -10,7 +10,7 @@ const UserProfile = ({ params }: { params: { id: string } }) => {
   const userName = searchParams.get("name");
 
   const { data } = useQuery({
-    queryKey: ["other-user-profile"],
+    queryKey: ["other-user-profile", params.id],
     queryFn: async () => {
       return await fecthOtherUserPosts(params);
     },
