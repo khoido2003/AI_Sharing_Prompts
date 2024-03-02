@@ -1,59 +1,71 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import qs from "query-string";
+
+import { ChangeEvent, useEffect, useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { fetchAllPrompts } from "../utils/apiPrompts";
-import { PromptData } from "../utils/typescript";
+
 import { PromptCardList } from "./PromptCardList";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useDebounce } from "@/hooks/use-debound";
 
 const Feed = () => {
+  const queryClient = useQueryClient();
+
   const router = useRouter();
   const [searchText, setSearchText] = useState<string>("");
+  let debounceValue = useDebounce(searchText);
 
-  const [searchTimeout, setSearchTimeout] = useState<any>(null);
-  const [searchedResults, setSearchedResults] = useState<any>([]);
+  // the query string can not handle the # so we have to remove it before searching
+  debounceValue.startsWith("#")
+    ? (debounceValue = debounceValue.slice(1))
+    : debounceValue;
+
+  const searchParams = useSearchParams();
+  const searchValue = searchParams.get("search");
 
   // Fetch data from the server
   const { isPending, isError, data, error } = useQuery({
-    queryKey: ["prompts"],
-    queryFn: fetchAllPrompts,
+    queryKey: ["prompts", searchValue],
+    queryFn: async () => await fetchAllPrompts(searchValue),
     staleTime: 0,
-    refetchInterval: 5000,
+    refetchInterval: 4000,
+    refetchOnMount: true,
   });
 
-  // Handle search results
-  const filteredPosts = (searchText: string) => {
-    // Check for case sensitive search text
-    const regrex = new RegExp(searchText, "i");
-    return (data as [PromptData])?.filter(
-      (post) =>
-        regrex.test(post.prompt) ||
-        regrex.test(post.creator.username) ||
-        regrex.test(post.tag),
-    );
-  };
-
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    clearTimeout(searchTimeout);
     setSearchText(e.target.value);
-
-    // debounce method
-    setSearchTimeout(
-      setTimeout(() => {
-        const searchResult = filteredPosts(e.target.value);
-        setSearchedResults(searchResult);
-      }, 500),
-    );
   };
+
+  useEffect(() => {
+    const url = qs.stringifyUrl(
+      { url: "/", query: { search: debounceValue } },
+      {
+        skipEmptyString: true,
+        skipNull: true,
+      },
+    );
+
+    router.push(url);
+
+    // Clear the search cache after 30s except all prompts fetched
+    const timeout = setTimeout(() => {
+      if (searchValue)
+        queryClient.removeQueries({ queryKey: ["prompts", searchValue] });
+    }, 30000);
+
+    return () => clearTimeout(timeout);
+  }, [router, debounceValue, queryClient, searchValue]);
 
   const handleTagClick = (tagName: string) => {
-    setSearchText(tagName);
-
-    const searchResult = filteredPosts(tagName);
-    setSearchedResults(searchResult);
+    if (tagName.startsWith("#")) setSearchText(tagName.trim());
+    else {
+      tagName = "#" + tagName;
+      setSearchText(tagName.trim());
+    }
   };
 
   return (
@@ -62,27 +74,18 @@ const Feed = () => {
         <input
           type="text"
           className="search_input dark:text-black"
-          placeholder="Search for a tag or an username..."
+          placeholder="Search for a tag or some keywords..."
           value={searchText}
           onChange={handleSearchChange}
           required
         />
       </form>
 
-      {searchText ? (
-        <PromptCardList
-          data={searchedResults}
-          isLoading={isPending}
-          handleTagClick={handleTagClick}
-        />
-      ) : (
-        <PromptCardList
-          data={data}
-          isLoading={isPending}
-          handleTagClick={handleTagClick}
-        />
-      )}
-
+      <PromptCardList
+        data={data}
+        isLoading={isPending}
+        handleTagClick={handleTagClick}
+      />
       {error && toast.error(error.message)}
     </section>
   );

@@ -7,9 +7,18 @@ import { unstable_noStore as noStore } from "next/cache";
  *
  */
 
-export const fetchAllPrompts = async () => {
+export const fetchAllPrompts = async (searchValue: string | null) => {
   noStore();
-  const response = await fetch("/api/prompt", { cache: "no-store" });
+  let response;
+  if (searchValue === null) {
+    response = await fetch(`/api/prompt`, {
+      cache: "no-store",
+    });
+  } else {
+    response = await fetch(`/api/prompt?search=${searchValue}`, {
+      cache: "no-store",
+    });
+  }
   const data = await response.json();
 
   return data;
@@ -21,7 +30,6 @@ export const fetchAllPrompts = async () => {
  * API to fetch the current user's post in their profile page
 
  */
-
 export const fetchCurrentUserPosts = async (session: Session | null) => {
   noStore();
   const response = await fetch(

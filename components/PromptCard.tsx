@@ -117,7 +117,6 @@ function PromptCard({
       </p>
 
       {/* EDIT AND DELETE PROMPT CARD IF THE PROMPT BELONG TO THE CURRENT USER */}
-
       {(session as DefaultSessionWithId)?.user?.id === post.creator._id &&
         pathName === "/profile" && (
           <div className="flex-end mt-5 gap-4 border-t  border-gray-600 pt-3 dark:border-gray-100">

@@ -1,3 +1,5 @@
+import { createId } from "@paralleldrive/cuid2";
+
 import { toast } from "sonner";
 import { skeletonItems } from "../utils/helpers";
 import { ProfileComponentProps } from "../utils/typescript";
@@ -14,7 +16,7 @@ const ProfileComponent = ({
   error,
 }: ProfileComponentProps) => {
   return (
-    <section className="w-full">
+    <section className="w-full" key={createId()}>
       <h1 className="head_text">
         {" "}
         <span className="blue_gradient">{name}</span>
@@ -22,7 +24,7 @@ const ProfileComponent = ({
 
       <p className="desc">{desc}</p>
 
-      <div className="prompt_layout mt-10">
+      <div className="prompt_layout mt-10" key={createId()}>
         {data && !isLoading ? (
           data.map((post) => (
             <PromptCard

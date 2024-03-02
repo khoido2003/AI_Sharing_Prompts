@@ -16,8 +16,8 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { inter } from "../utils/fonts";
+
 import ToggleButton from "./ToggleButton";
-import { LoaderIcon } from "lucide-react";
 import { DesktopNav } from "./desktop-nav";
 import { MobileNav } from "./mobile-nav";
 import { AuthLoading } from "./loading/auth-loading";
