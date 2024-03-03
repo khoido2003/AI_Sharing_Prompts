@@ -1,4 +1,4 @@
-# <img src="https://prompt-world.netlify.app/assets/images/logo.svg" alt="PromptWorld Logo" width="48"/> PromptWorld
+# <img src="https://prompt-world-exploring.vercel.app/assets/images/logo.svg" alt="PromptWorld Logo" width="48"/> PromptWorld
 
 ## 🚀 Introduction
 
@@ -29,7 +29,7 @@ _Discover diverse prompts contributed by the PromptWorld community._
 
 Visit [PromptWorld](https://prompt-world-exploring.vercel.app/) to experience the platform!
 
-# <img src="./screenshots/qr-code.png" alt="PromptWorld Logo" width="300"/>
+# <img src="./screenshots/QR-code.png" alt="PromptWorld Logo" width="300"/>
 
 ## 🛠️ Technologies Used
 
