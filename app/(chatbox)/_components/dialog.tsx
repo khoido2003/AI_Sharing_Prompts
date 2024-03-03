@@ -94,8 +94,8 @@ export const Dialog = ({
         //   : "h-[30rem] w-full sm:min-w-[25rem] sm:max-w-[25rem]")
 
         cn(
-          "top-56 z-[99999] flex flex-col rounded-xl bg-white text-black dark:bg-black dark:text-white " +
-            "bottom-0 right-0 m-4 max-w-[calc(100%-2rem)] overflow-hidden transition-all " +
+          " z-[99999] flex flex-col rounded-xl bg-white text-black dark:bg-black dark:text-white " +
+            "bottom-16 right-0 m-4 max-w-[calc(100%-2rem)] overflow-hidden transition-all " +
             "shadow-[0px_5px_40px_rgba(0,0,0,0.16),0_20px_25px_-5px_rgb(0,0,0,0.1)] " +
             "dark:shadow-[0px_5px_40px_rgba(0,0,0,0.36),0_20px_25px_-5px_rgb(0,0,0,0.3)]",
           isOpen ? "fixed" : "hidden",
