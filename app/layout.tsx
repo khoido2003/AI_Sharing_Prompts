@@ -6,7 +6,7 @@ import Provider from "../providers/provider";
 import { ThemeProvider } from "../providers/theme-provider";
 import { QueryProvider } from "@/providers/query-provider";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <link rel="icon" href="/assets/images/logo.svg" sizes="any" />
-      <body className={``}>
+      <body>
         <QueryProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Provider>

@@ -11,6 +11,9 @@ import { PromptCardList } from "./PromptCardList";
 import { toast } from "sonner";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDebounce } from "@/hooks/use-debound";
+import { ConvexAiChat } from "@/app/(chatbox)";
+import { Button } from "./ui/button";
+import { Bot } from "lucide-react";
 
 const Feed = () => {
   const queryClient = useQueryClient();
@@ -70,6 +73,23 @@ const Feed = () => {
 
   return (
     <section className="feed">
+      {/* AI chatbox */}
+      <ConvexAiChat
+        convexUrl={process.env.NEXT_PUBLIC_CONVEX_URL!}
+        name="PromptWolrd AI Bot"
+        infoMessage="AI can make mistakes. Verify your answers before using!"
+        welcomeMessage="Hey there, what can I help you with?"
+        renderTrigger={(onClick) => (
+          <Button
+            onClick={onClick}
+            className="fixed bottom-5 right-3 z-[50] p-5 "
+          >
+            <Bot className="h-6 w-6 sm:mr-2" />
+            <span className="hidden font-semibold sm:block">AI assistant</span>
+          </Button>
+        )}
+      />
+
       <form className="flex-center relative flex w-full">
         <input
           type="text"
@@ -86,6 +106,7 @@ const Feed = () => {
         isLoading={isPending}
         handleTagClick={handleTagClick}
       />
+
       {error && toast.error(error.message)}
     </section>
   );
