@@ -14,6 +14,7 @@ function PromptCard({
   handleTagClick,
   handleEdit,
   handleDelete,
+  ref,
 }: PromptCardProps) {
   const [copied, setCopied] = useState("");
 
@@ -45,7 +46,7 @@ function PromptCard({
   };
 
   return (
-    <div className="prompt_card">
+    <div className="prompt_card" ref={ref}>
       <div className="flex items-start justify-between gap-5">
         <div
           className="flex flex-1 cursor-pointer items-center justify-start gap-3"

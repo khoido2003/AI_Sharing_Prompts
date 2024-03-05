@@ -7,22 +7,38 @@ import { unstable_noStore as noStore } from "next/cache";
  *
  */
 
-export const fetchAllPrompts = async (searchValue: string | null) => {
+export const fetchAllPrompts = async ({
+  searchValue,
+  pageValue,
+}: {
+  searchValue: string | null;
+  pageValue: number;
+}) => {
   noStore();
   let response;
   if (searchValue === null) {
-    response = await fetch(`/api/prompt`, {
+    response = await fetch(`/api/prompt?page=${pageValue.toString()}`, {
       cache: "no-store",
     });
   } else {
-    response = await fetch(`/api/prompt?search=${searchValue}`, {
-      cache: "no-store",
-    });
+    response = await fetch(
+      `/api/prompt?page=${pageValue.toString()}&search=${searchValue}`,
+      {
+        cache: "no-store",
+      },
+    );
   }
   const data = await response.json();
-
   return data;
 };
+
+/////////////////////////////////
+
+// export const fetchPaginationPrompts = async (props) => {
+//   const res = await fetchAllPrompts(`/api/prompt?page=${props.pageParams}`);
+
+//   return res.json();
+// };
 
 //////////////////////////////////
 

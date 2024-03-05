@@ -1,32 +1,48 @@
-import { skeletonItems } from "../utils/helpers";
 import { PromptCardListProps } from "../utils/typescript";
-
 import PromptCard from "./PromptCard";
-import SkeletonLoading from "./loading/SkeletonLoading";
+
+interface PromptProps {
+  _id: string;
+  creator: {
+    _id: string;
+    username: string;
+    email: string;
+    image: string;
+  };
+  prompt: string;
+  tag: string;
+}
 
 export const PromptCardList = ({
   data,
   handleTagClick,
-  isLoading,
+  isFetchingNextPage,
+  ref,
 }: PromptCardListProps) => {
   return (
     <div className="prompt_layout mt-16">
-      {!isLoading && data ? (
-        data.map((post) => (
-          <PromptCard
-            key={post._id}
-            post={post}
-            handleTagClick={handleTagClick}
-          />
-        ))
-      ) : (
-        <>
-          {skeletonItems.map((index) => (
-            <div key={index}>
-              <SkeletonLoading />
-            </div>
-          ))}
-        </>
+      {data?.pages.map((el) =>
+        (el.prompts as PromptProps[])?.map((post, index) => {
+          // Only the last element will have ref to check the intersection observer hook
+          if (el.prompts.length === index + 1) {
+            return (
+              <PromptCard
+                key={post._id}
+                post={post}
+                handleTagClick={handleTagClick}
+                ref={ref}
+              />
+            );
+          }
+          return (
+            <PromptCard
+              key={post._id}
+              post={post}
+              handleTagClick={handleTagClick}
+              ref={ref}
+            />
+          );
+        }),
       )}
     </div>
   );

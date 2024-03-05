@@ -1,21 +1,30 @@
 "use client";
 
 import qs from "query-string";
+import { skeletonItems } from "@/utils/helpers";
 
 import { ChangeEvent, useEffect, useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
+import { useInView } from "react-intersection-observer";
+import { useDebounce } from "@/hooks/use-debound";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { fetchAllPrompts } from "../utils/apiPrompts";
-
-import { PromptCardList } from "./PromptCardList";
-import { toast } from "sonner";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useDebounce } from "@/hooks/use-debound";
 import { ConvexAiChat } from "@/app/(chatbox)";
-import { Button } from "./ui/button";
+
 import { Bot } from "lucide-react";
+import { toast } from "sonner";
+import { PromptCardList } from "./PromptCardList";
+import { Button } from "./ui/button";
+import SkeletonLoading from "./loading/SkeletonLoading";
 
 const Feed = () => {
+  // Intersection observer hook
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
+
   const queryClient = useQueryClient();
 
   const router = useRouter();
@@ -30,14 +39,37 @@ const Feed = () => {
   const searchParams = useSearchParams();
   const searchValue = searchParams.get("search");
 
-  // Fetch data from the server
-  const { isPending, isError, data, error } = useQuery({
-    queryKey: ["prompts", searchValue],
-    queryFn: async () => await fetchAllPrompts(searchValue),
-    staleTime: 0,
-    refetchInterval: 4000,
-    refetchOnMount: true,
+  // Infinite scrolling
+  const {
+    data,
+    status,
+    error,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+  } = useInfiniteQuery({
+    queryKey: ["prompts"],
+    queryFn: async (props) => {
+      return fetchAllPrompts({ pageValue: props.pageParam, searchValue });
+    },
+    initialPageParam: 1,
+    getNextPageParam: (page, allPages) => {
+      // check if there is next page or not
+      // const nextPage = page.length ? allPages.length + 1 : undefined;
+      // return nextPage;
+
+      return allPages.length + 1;
+    },
   });
+
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      console.log("Hello");
+      // fetchNextPage();
+    }
+  }, [inView, hasNextPage, fetchNextPage]);
+
+  ////////////////////////////////////
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
@@ -101,11 +133,36 @@ const Feed = () => {
         />
       </form>
 
+      {status === "pending" && (
+        <div className="prompt_layout mt-16">
+          {skeletonItems.map((index) => (
+            <div key={index}>
+              <SkeletonLoading />
+            </div>
+          ))}
+        </div>
+      )}
+
       <PromptCardList
         data={data}
-        isLoading={isPending}
         handleTagClick={handleTagClick}
+        isFetchingNextPage={isFetchingNextPage}
+        ref={ref}
       />
+
+      {isFetchingNextPage && (
+        <div className="prompt_layout ">
+          {skeletonItems.map((index) => (
+            <div key={index}>
+              <SkeletonLoading />
+            </div>
+          ))}
+        </div>
+      )}
+
+      <Button onClick={fetchNextPage}>
+        {isFetchingNextPage ? "Loading..." : "Load more"}
+      </Button>
 
       {error && toast.error(error.message)}
     </section>

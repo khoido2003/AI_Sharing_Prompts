@@ -1,4 +1,6 @@
+import { InfiniteData } from "@tanstack/react-query";
 import { DefaultSession } from "next-auth";
+import React from "react";
 import {
   Control,
   FieldErrors,
@@ -19,26 +21,6 @@ export interface DefaultSessionWithId extends DefaultSession {
     image?: string | null;
     id?: string | null; // Add the 'id' property
   };
-}
-
-////////////////////////
-
-export interface PromptCardProps {
-  post: {
-    _id: string;
-    creator: {
-      _id: string;
-      username: string;
-      email: string;
-      image: string;
-    };
-    prompt: string;
-    tag: string;
-    dateAdded?: string;
-  };
-  handleTagClick?: (a: string) => void;
-  handleEdit?: () => void;
-  handleDelete?: () => void;
 }
 
 ////////////////////////
@@ -67,24 +49,31 @@ export interface PromptData {
 /////////////////////////////////////
 
 export interface PromptCardListProps {
-  data:
-    | [
-        post: {
-          _id: string;
-          creator: {
-            _id: string;
-            username: string;
-            email: string;
-            image: string;
-          };
-          prompt: string;
-          tag: string;
-        },
-      ]
-    | undefined
-    | void;
+  data: InfiniteData<any, unknown> | undefined;
   handleTagClick?: (a: string) => void | undefined;
-  isLoading: boolean;
+  isFetchingNextPage: boolean;
+  ref?: React.Ref<HTMLDivElement>;
+}
+
+////////////////////////////////
+
+export interface PromptCardProps {
+  post: {
+    _id: string;
+    creator: {
+      _id: string;
+      username: string;
+      email: string;
+      image: string;
+    };
+    prompt: string;
+    tag: string;
+    dateAdded?: string;
+  };
+  handleTagClick?: (a: string) => void;
+  handleEdit?: () => void;
+  handleDelete?: () => void;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
 ///////////////////////////////////
