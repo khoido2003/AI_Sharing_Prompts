@@ -1,7 +1,7 @@
 // Format time from dateAdded
 
-export function formatTime(dateString: string): string {
-  const date = new Date(dateString);
+export function formatTime(dateString: string | undefined): string {
+  const date = new Date(dateString!);
 
   // Specify the options for formatting
   const options: Intl.DateTimeFormatOptions = {

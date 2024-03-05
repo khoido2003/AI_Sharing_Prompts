@@ -19,13 +19,13 @@ import { Button } from "./ui/button";
 import SkeletonLoading from "./loading/SkeletonLoading";
 
 const Feed = () => {
+  const queryClient = useQueryClient();
+
   // Intersection observer hook
   const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
   });
-
-  const queryClient = useQueryClient();
 
   const router = useRouter();
   const [searchText, setSearchText] = useState<string>("");
@@ -48,26 +48,34 @@ const Feed = () => {
     isFetchingNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    queryKey: ["prompts"],
+    queryKey: ["prompts", searchValue],
     queryFn: async (props) => {
       return fetchAllPrompts({ pageValue: props.pageParam, searchValue });
     },
     initialPageParam: 1,
     getNextPageParam: (page, allPages) => {
       // check if there is next page or not
-      // const nextPage = page.length ? allPages.length + 1 : undefined;
-      // return nextPage;
+      const nextPage = page.prompts.length ? allPages.length + 1 : undefined;
 
-      return allPages.length + 1;
+      return nextPage;
     },
   });
 
   useEffect(() => {
     if (inView && hasNextPage) {
-      console.log("Hello");
-      // fetchNextPage();
+      fetchNextPage();
     }
   }, [inView, hasNextPage, fetchNextPage]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      queryClient.invalidateQueries({ queryKey: ["prompts", null] });
+    }, 5000); // Refetch every minute
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [queryClient, searchValue]);
 
   ////////////////////////////////////
 
@@ -147,7 +155,7 @@ const Feed = () => {
         data={data}
         handleTagClick={handleTagClick}
         isFetchingNextPage={isFetchingNextPage}
-        ref={ref}
+        innerRef={ref}
       />
 
       {isFetchingNextPage && (
@@ -160,9 +168,9 @@ const Feed = () => {
         </div>
       )}
 
-      <Button onClick={fetchNextPage}>
+      {/* <Button onClick={fetchNextPage}>
         {isFetchingNextPage ? "Loading..." : "Load more"}
-      </Button>
+      </Button> */}
 
       {error && toast.error(error.message)}
     </section>

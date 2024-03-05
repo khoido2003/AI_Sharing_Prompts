@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import Image from "next/image";
@@ -7,15 +6,15 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { formatTime } from "@/utils/helpers";
-import { DefaultSessionWithId, PromptCardProps } from "../../utils/typescript";
+import { DefaultSessionWithId, PromptCardProps } from "@/utils/typescript";
 
-function PromptCard({
+const PromptCard = ({
   post,
   handleTagClick,
   handleEdit,
   handleDelete,
-  ref,
-}: PromptCardProps) {
+  innerRef,
+}: PromptCardProps) => {
   const [copied, setCopied] = useState("");
 
   // Find the current login user
@@ -46,7 +45,7 @@ function PromptCard({
   };
 
   return (
-    <div className="prompt_card" ref={ref}>
+    <div className="prompt_card" ref={innerRef}>
       <div className="flex items-start justify-between gap-5">
         <div
           className="flex flex-1 cursor-pointer items-center justify-start gap-3"
@@ -109,7 +108,7 @@ function PromptCard({
           <span
             key={i}
             onClick={() => {
-              handleTagClick(item);
+              handleTagClick?.(item);
             }}
           >
             {item.charAt(0) === "#" ? item : `#${item}`}{" "}
@@ -137,6 +136,6 @@ function PromptCard({
         )}
     </div>
   );
-}
+};
 
 export default PromptCard;

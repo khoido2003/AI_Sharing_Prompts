@@ -17,7 +17,7 @@ export const PromptCardList = ({
   data,
   handleTagClick,
   isFetchingNextPage,
-  ref,
+  innerRef,
 }: PromptCardListProps) => {
   return (
     <div className="prompt_layout mt-16">
@@ -30,7 +30,7 @@ export const PromptCardList = ({
                 key={post._id}
                 post={post}
                 handleTagClick={handleTagClick}
-                ref={ref}
+                innerRef={innerRef}
               />
             );
           }
@@ -39,7 +39,7 @@ export const PromptCardList = ({
               key={post._id}
               post={post}
               handleTagClick={handleTagClick}
-              ref={ref}
+              innerRef={innerRef}
             />
           );
         }),

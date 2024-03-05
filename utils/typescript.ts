@@ -52,7 +52,7 @@ export interface PromptCardListProps {
   data: InfiniteData<any, unknown> | undefined;
   handleTagClick?: (a: string) => void | undefined;
   isFetchingNextPage: boolean;
-  ref?: React.Ref<HTMLDivElement>;
+  innerRef?: React.Ref<HTMLDivElement>;
 }
 
 ////////////////////////////////
@@ -73,7 +73,7 @@ export interface PromptCardProps {
   handleTagClick?: (a: string) => void;
   handleEdit?: () => void;
   handleDelete?: () => void;
-  ref?: React.Ref<HTMLDivElement>;
+  innerRef?: React.Ref<HTMLDivElement>;
 }
 
 ///////////////////////////////////
