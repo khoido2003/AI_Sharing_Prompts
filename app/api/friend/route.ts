@@ -83,7 +83,7 @@ export const DELETE = async (req: NextRequest) => {
 
     if (friendRequest._id) {
       await friendRequest.deleteOne();
-      return new Response("Friend request deleted successfully", {
+      return new Response(JSON.stringify(friendRequest), {
         status: 200,
       });
     }

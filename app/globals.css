@@ -275,6 +275,10 @@
   @apply flex items-center justify-between;
 }
 
+.btn_friend {
+  @apply mb-2 mt-4 cursor-pointer text-base;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

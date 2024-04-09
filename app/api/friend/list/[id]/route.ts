@@ -16,7 +16,7 @@ export const GET = async (
     let friends;
 
     // GET ALL FRIENDS
-    if (!typeValue) {
+    if (!typeValue || typeValue === "all") {
       friends = await FriendRequest.find({
         $or: [
           { senderId: userId, status: "accepted" },

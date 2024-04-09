@@ -5,6 +5,7 @@ import { skeletonItems } from "../utils/helpers";
 import { ProfileComponentProps } from "../utils/typescript";
 import PromptCard from "./PromptCard";
 import SkeletonLoading from "./loading/SkeletonLoading";
+import { FriendButton } from "./friend-button";
 
 const ProfileComponent = ({
   name,
@@ -14,6 +15,7 @@ const ProfileComponent = ({
   handleDelete,
   isLoading,
   error,
+  isSelf,
 }: ProfileComponentProps) => {
   return (
     <section className="w-full" key={createId()}>
@@ -21,6 +23,8 @@ const ProfileComponent = ({
         {" "}
         <span className="blue_gradient">{name}</span>
       </h1>
+
+      <FriendButton isSelf={isSelf} />
 
       <p className="desc">{desc}</p>
 

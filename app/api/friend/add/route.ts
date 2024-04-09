@@ -3,14 +3,14 @@ import { connectToDB } from "@/utils/database";
 
 export const POST = async (req: Request, res: Response) => {
   // senderId vs receiverId
-  const { sender, receiver } = await req.json();
+  const { senderId, receiverId } = await req.json();
 
   try {
     // check senderId and receiverId already exist in friendRequest
     const existingFriendRequest = await FriendRequest.findOne({
       $or: [
-        { senderId: sender, receiverId: receiver },
-        { senderId: receiver, receiverId: sender },
+        { senderId: senderId, receiverId: receiverId },
+        { senderId: receiverId, receiverId: senderId },
       ],
     });
 
@@ -20,8 +20,8 @@ export const POST = async (req: Request, res: Response) => {
 
     await connectToDB();
     const newFriendRequest = new FriendRequest({
-      senderId: sender,
-      receiverId: receiver,
+      senderId: senderId,
+      receiverId: receiverId,
     });
     await newFriendRequest.save();
 

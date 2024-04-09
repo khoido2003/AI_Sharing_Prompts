@@ -92,6 +92,7 @@ const Profile = () => {
             handleDelete={handleDelete}
             isLoading={isPending}
             error={error}
+            isSelf={true}
           />
         </>
       )}
