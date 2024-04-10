@@ -104,4 +104,28 @@ export interface ProfileComponentProps {
   handleDelete?: (post: { _id: string }) => void;
   isLoading?: boolean;
   error?: Error | null;
+  isSelf?: boolean;
+}
+
+export interface FriendButton {
+  userId: string | null | undefined;
+  friendId: string | null | undefined;
+  type?: "cancel" | "delete";
+}
+
+export interface FriendRequestProps {
+  _id: string;
+  senderId: {
+    _id: string;
+    username: string;
+    email: string;
+    image: string;
+  };
+  receiverId: {
+    _id: string;
+    username: string;
+    email: string;
+    image: string;
+  };
+  status: "pending" | "accepted";
 }

@@ -67,10 +67,11 @@ const Feed = () => {
     }
   }, [inView, hasNextPage, fetchNextPage]);
 
+  // TODO: CHANGE REVALIDATE TO 30s
   useEffect(() => {
     const interval = setInterval(() => {
       queryClient.invalidateQueries({ queryKey: ["prompts", null] });
-    }, 5000); // Refetch every minute
+    }, 1000 * 30); // Refetch every minute
 
     return () => {
       clearInterval(interval);
