@@ -14,7 +14,7 @@ const ReceiveList = () => {
   const { data: session } = useSession();
 
   const { data: friends, isLoading } = useQuery({
-    queryKey: ["friends", "request"],
+    queryKey: ["friends", "receive"],
     queryFn: async () => {
       if (!session) return null;
 
