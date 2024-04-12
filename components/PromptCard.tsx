@@ -7,6 +7,8 @@ import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { formatTime } from "@/utils/helpers";
 import { DefaultSessionWithId, PromptCardProps } from "@/utils/typescript";
+import { Heart } from "lucide-react";
+import LikeButton from "./like-button";
 
 const PromptCard = ({
   post,
@@ -116,24 +118,28 @@ const PromptCard = ({
         ))}
       </p>
 
-      {/* EDIT AND DELETE PROMPT CARD IF THE PROMPT BELONG TO THE CURRENT USER */}
-      {(session as DefaultSessionWithId)?.user?.id === post.creator._id &&
-        pathName === "/profile" && (
-          <div className="flex-end mt-5 gap-4 border-t  border-gray-600 pt-3 dark:border-gray-100">
-            <p
-              className="cursor-pointer rounded-md bg-black px-3 py-1 text-sm text-slate-200 hover:bg-primary-orange dark:bg-slate-200 dark:text-slate-800 dark:hover:bg-primary-orange dark:hover:text-slate-100"
-              onClick={handleEdit}
-            >
-              Edit
-            </p>
-            <p
-              className="cursor-pointer rounded-md bg-slate-400 px-3 py-1 text-sm text-slate-100 hover:bg-red-600 dark:bg-slate-800 dark:hover:bg-red-600"
-              onClick={handleDelete}
-            >
-              Delete
-            </p>
-          </div>
-        )}
+      <div className="mt-5  flex justify-between border-t  border-gray-600 pt-3 dark:border-gray-100">
+        <LikeButton promptId={post._id} />
+
+        {/* EDIT AND DELETE PROMPT CARD IF THE PROMPT BELONG TO THE CURRENT USER */}
+        {(session as DefaultSessionWithId)?.user?.id === post.creator._id &&
+          pathName === "/profile" && (
+            <div className="flex-end gap-4 self-end">
+              <p
+                className="cursor-pointer rounded-md bg-black px-3 py-1 text-sm text-slate-200 hover:bg-primary-orange dark:bg-slate-200 dark:text-slate-800 dark:hover:bg-primary-orange dark:hover:text-slate-100"
+                onClick={handleEdit}
+              >
+                Edit
+              </p>
+              <p
+                className="cursor-pointer rounded-md bg-slate-400 px-3 py-1 text-sm text-slate-100 hover:bg-red-600 dark:bg-slate-800 dark:hover:bg-red-600"
+                onClick={handleDelete}
+              >
+                Delete
+              </p>
+            </div>
+          )}
+      </div>
     </div>
   );
 };
